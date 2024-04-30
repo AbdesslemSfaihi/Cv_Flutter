@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       '/contact': (context) => const ContactPage(),
       '/gallerie': (context) => GalleriePage(),
       '/parametres': (context) => const ParametresPage(),
-      '/pays': (context) => const PaysPage(),
+      '/pays': (context) => MapPage(),
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
