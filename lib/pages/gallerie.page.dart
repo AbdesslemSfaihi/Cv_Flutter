@@ -34,18 +34,18 @@ class GalleriePage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24.0),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextFormField(
                 controller: txt_keyword, // Assign the controller here
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Enter keyword',
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.lightBlueAccent,
+                  backgroundColor: Colors.lightBlueAccent,
                   minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {

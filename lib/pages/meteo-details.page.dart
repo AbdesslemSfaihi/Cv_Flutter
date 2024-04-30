@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 class MeteoDetailsPage extends StatefulWidget {
   String ville;
 
-  MeteoDetailsPage(this.ville);
+  MeteoDetailsPage(this.ville, {super.key});
 
   @override
   State<MeteoDetailsPage> createState() => _MeteoDetailsPageState();
@@ -29,7 +29,7 @@ class _MeteoDetailsPageState extends State<MeteoDetailsPage> {
         title: Text('Page Meteo Details ${widget.ville}'),
       ),
       body: meteoData == null
-          ? Center(
+          ? const Center(
         child: CircularProgressIndicator(),
       )
           : ListView.builder(
@@ -48,9 +48,9 @@ class _MeteoDetailsPageState extends State<MeteoDetailsPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("${new DateFormat('E-dd/MM/yyyy').format(DateTime.fromMicrosecondsSinceEpoch(meteoData['list'][index]['dt']*1000000))}",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                        Text(DateFormat('E-dd/MM/yyyy').format(DateTime.fromMicrosecondsSinceEpoch(meteoData['list'][index]['dt']*1000000)),style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                         Text(
-                          "${new DateFormat('HH:mm').format(DateTime.fromMicrosecondsSinceEpoch(meteoData['list'][index]['dt'] * 1000000))} | ${meteoData['list'][index]['weather'][0]['main'].toString()}",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          "${DateFormat('HH:mm').format(DateTime.fromMicrosecondsSinceEpoch(meteoData['list'][index]['dt'] * 1000000))} | ${meteoData['list'][index]['weather'][0]['main'].toString()}",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
 
                         ),
                       ],
@@ -58,7 +58,7 @@ class _MeteoDetailsPageState extends State<MeteoDetailsPage> {
                   ],
                 ),
                 Text(
-                  "${(meteoData['list'][index]['main']['temp'] - 273.15).round()}°C",style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  "${(meteoData['list'][index]['main']['temp'] - 273.15).round()}°C",style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
 
                 ),
               ],
@@ -70,12 +70,12 @@ class _MeteoDetailsPageState extends State<MeteoDetailsPage> {
   }
 
   void getMeteoData(String ville) {
-    print("Meteo de la ville de " + ville);
+    print("Meteo de la ville de $ville");
     String url =
-        "https://api.openweathermap.org/data/2.5/forecast?q=${ville}&appid=c109c07bc4df77a88c923e6407aef864";
+        "https://api.openweathermap.org/data/2.5/forecast?q=$ville&appid=c109c07bc4df77a88c923e6407aef864";
     http.get(Uri.parse(url)).then((resp) {
       setState(() {
-        this.meteoData = json.decode(resp.body);
+        meteoData = json.decode(resp.body);
       });
     }).catchError((err) {
       print(err);

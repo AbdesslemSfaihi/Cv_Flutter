@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sfaihi_abdesslem/theme/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../config/global.params.dart';
 import '../menu/drawer.widget.dart';
 import 'package:sfaihi_abdesslem/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,17 +14,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       drawer: MyDrawer(),
       appBar: AppBar(
-          leading: Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                );
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
               },
+            );
+          },
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -41,7 +43,9 @@ class HomePage extends StatelessWidget {
               Icons.more_vert,
               color: Colors.black54,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
           )
         ],
       ),
@@ -53,7 +57,7 @@ class HomePage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(16.0),
               padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(color: Colors.grey.shade200),
+              decoration: BoxDecoration(color: Colors.white24),
               child: const Text(
                   "Over 8+ years of experience and web development and 5+ years of experience in mobile applications development "),
             ),
@@ -85,24 +89,24 @@ class HomePage extends StatelessWidget {
                 position: "Flutter Developer",
                 duration: "2018 - Current"),
             const SizedBox(height: 20.0),
-            _buildTitle("Education"),
+            _buildTitle("Etude"),
             const SizedBox(height: 5.0),
             _buildExperienceRow(
                 company: "Lycée 15 Novembre 1955",
-                position: "Science Experimentales",
+                position: "(Baccalauréat Science Experimentales",
                 duration: "2016 - 2019"),
             _buildExperienceRow(
                 company: "Institut Supérieur d'Informatique et de Multimédia de Sfax",
-                position: "Science de l'informatique",
+                position: "Licence Science de l'informatique",
                 duration: "2019 - 2022"),
             _buildExperienceRow(
                 company: "Institut International de Technologie",
-                position: "Ingénieur en Informatique", duration: "2022 - 2025"),
+                position: "Ingénierie en Informatique", duration: "2022 - 2025"),
             const SizedBox(height: 20.0),
             _buildTitle("Contact"),
             const SizedBox(height: 5.0),
-            Row(
-              children: const <Widget>[
+            const Row(
+              children: <Widget>[
                 SizedBox(width: 30.0),
                 Icon(
                   Icons.mail,
@@ -116,8 +120,8 @@ class HomePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10.0),
-            Row(
-              children: const <Widget>[
+            const Row(
+              children: <Widget>[
                 SizedBox(width: 30.0),
                 Icon(
                   Icons.phone,
@@ -250,18 +254,18 @@ class HomePage extends StatelessWidget {
                 child: CircleAvatar(
                     radius: 35.0, backgroundImage: NetworkImage(avatars[7])))),
         const SizedBox(width: 20.0),
-        Column(
+        const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               "Abdesslem Sfaihi",
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10.0),
-            const Text("Full Stack Developer"),
-            const SizedBox(height: 5.0),
+            SizedBox(height: 10.0),
+            Text("Full Stack Developer"),
+            SizedBox(height: 5.0),
             Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(
                   FontAwesomeIcons.map,
                   size: 12.0,

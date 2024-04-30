@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../config/global.params.dart';
 
 class MyDrawer extends StatelessWidget {
-  late SharedPreferences prefs;
-
-  MyDrawer({super.key}); // Déclaration de SharedPreferences
-
-  // Helper method to handle navigation and preferences
-
+  const MyDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +10,7 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
+          const DrawerHeader(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -49,6 +43,9 @@ class MyDrawer extends StatelessWidget {
             return ListTile(
               title: Text(item['title'] as String),
               leading: item['icon'] as Icon,
+              onTap: () async {
+                  Navigator.pushNamed(context, item['route'] as String);
+              },
             );
           }).toList(),
         ],

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:intl/intl.dart';
-import 'dart:collection';
 
 class GallerieDetails extends StatefulWidget {
   final String keyword;
 
-  GallerieDetails(this.keyword);
+  const GallerieDetails(this.keyword, {super.key});
 
   @override
   State<GallerieDetails> createState() => _GallerieDetailsState();
@@ -18,7 +16,7 @@ class _GallerieDetailsState extends State<GallerieDetails> {
   int currentPage = 1;
   int size = 10;
   late int totalPages;
-  ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
   List<dynamic>hits = [];
 
   @override
@@ -37,12 +35,12 @@ class _GallerieDetailsState extends State<GallerieDetails> {
   }
 
   void getGallerieData(String keyword) {
-    print("Gallerie de " + keyword);
+    print("Gallerie de $keyword");
     String url =
-        "https://pixabay.com/api/?key=15646595-375eb91b3408e352760ee72c8&q=${keyword}&page=${currentPage}&per_page=${size}";
+        "https://pixabay.com/api/?key=15646595-375eb91b3408e352760ee72c8&q=$keyword&page=$currentPage&per_page=$size";
     http.get(Uri.parse(url)).then((resp) {
       setState(() {
-        this.gallerieData = json.decode(resp.body);
+        gallerieData = json.decode(resp.body);
         hits.addAll(gallerieData['hits']);
         totalPages=(gallerieData['totalHits']/size).ceil();
         //print(gallerieData);
@@ -57,10 +55,10 @@ class _GallerieDetailsState extends State<GallerieDetails> {
     return Scaffold(
         appBar: AppBar(
           title: totalPages == 0
-              ? Text('Pas de résultats')
-              : Text("${widget.keyword}, Page ${currentPage}/${totalPages}",)),
+              ? const Text('Pas de résultats')
+              : Text("${widget.keyword}, Page $currentPage/$totalPages",)),
         body: (gallerieData == null
-            ? Center(
+            ? const Center(
           child: CircularProgressIndicator(),
         )
             : ListView.builder(
@@ -73,13 +71,13 @@ class _GallerieDetailsState extends State<GallerieDetails> {
                     color: Colors.blue,
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                         child: Text(
                           hits[index]['tags'],
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 22,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -89,7 +87,7 @@ class _GallerieDetailsState extends State<GallerieDetails> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Card(
                       child: Image.network(
                         hits[index]['webformatURL'], // Afficher la photo depuis l'URL
@@ -97,7 +95,7 @@ class _GallerieDetailsState extends State<GallerieDetails> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               );
             },
