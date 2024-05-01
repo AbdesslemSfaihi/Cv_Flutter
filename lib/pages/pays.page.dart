@@ -5,6 +5,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MapPage extends StatefulWidget {
+  const MapPage({super.key});
+
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -16,7 +18,7 @@ class _MapPageState extends State<MapPage> {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(
+            options: const MapOptions(
               initialCenter: LatLng(34.76187212919853, 10.730177158384786),
               initialZoom: 15.2,
             ),
@@ -30,7 +32,7 @@ class _MapPageState extends State<MapPage> {
                   Marker(
                     width: 80.0,
                     height: 80.0,
-                    point:  LatLng(34.76187212919853, 10.730177158384786),
+                    point:  const LatLng(34.76187212919853, 10.730177158384786),
                     child: FaIcon(FontAwesomeIcons.locationDot,
                         color: Colors.red[900]),
                   ),
@@ -54,12 +56,12 @@ class _MapPageState extends State<MapPage> {
                 Navigator.of(context).pop();
               },
               child: Container(
-                padding: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back,
                   color: Colors.black,
                 ),

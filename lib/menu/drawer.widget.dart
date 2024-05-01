@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
           ),
-          ...(GlobalParams.menus as List<Map<String, dynamic>>).map((item) {
+          ...(GlobalParams.menus).map((item) {
             return ListTile(
               title: Text(item['title'] as String),
               leading: item['icon'] as Icon,

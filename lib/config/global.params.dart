@@ -4,7 +4,7 @@ class GlobalParams {
   static List<Map<String, dynamic>> menus = [
     {
       "title": "Acceuil",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.home_filled,
         color: Colors.indigo,
       ),
@@ -12,7 +12,7 @@ class GlobalParams {
     },
     {
       "title": "Météo",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.sunny_snowing,
         color: Colors.indigo,
       ),
@@ -20,7 +20,7 @@ class GlobalParams {
     },
     {
       "title": "Gallerie",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.image_rounded,
         color: Colors.indigo,
       ),
@@ -28,7 +28,7 @@ class GlobalParams {
     },
     {
       "title": "Pays",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.maps_home_work_rounded,
         color: Colors.indigo,
       ),
@@ -36,7 +36,7 @@ class GlobalParams {
     },
     {
       "title": "Contact",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.contact_page_rounded,
         color: Colors.indigo,
       ),
@@ -44,7 +44,7 @@ class GlobalParams {
     },
     {
       "title": "Paramètres",
-      "icon": Icon(
+      "icon": const Icon(
         Icons.settings,
         color: Colors.indigo,
       ),

@@ -58,7 +58,7 @@ const List<String> avatars = [
   'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_damodar.jpg?alt=media&token=aaf47b41-3485-4bab-bcb6-2e472b9afee6',
   'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sudip.jpg?alt=media',
   'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sid.png?alt=media',
-  'https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/407445556_24717821821165099_1558072385500399668_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=OBD0RVpcaCwAb4Mp8-1&_nc_ht=scontent.ftun14-1.fna&oh=00_AfAdtABRRrdpctfPif7qC3bJVAGvedo7lqpvVNtACZkhOw&oe=66314CB3',
+  'https://res.cloudinary.com/dc5wcwmzq/image/upload/v1714517295/profil_uv3csq.jpg',
 ];
 
 const List<String> images = [

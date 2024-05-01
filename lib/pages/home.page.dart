@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sfaihi_abdesslem/pages/contact.page.dart';
+import 'package:sfaihi_abdesslem/pages/pays.page.dart';
 import 'package:sfaihi_abdesslem/theme/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../menu/drawer.widget.dart';
@@ -10,12 +12,17 @@ import 'package:url_launcher/url_launcher.dart';
 class HomePage extends StatelessWidget {
   late SharedPreferences prefs;
   static const String path = "lib/src/pages/home.page.dart";
+
   HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      drawer: MyDrawer(),
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
+      drawer: const MyDrawer(),
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
@@ -36,11 +43,16 @@ class HomePage extends StatelessWidget {
               FontAwesomeIcons.commentDots,
               color: Colors.black54,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ContactPage()),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(
-              Icons.more_vert,
+              Icons.dark_mode,
               color: Colors.black54,
             ),
             onPressed: () {
@@ -53,11 +65,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _buildHeader(),
+            _buildHeader(context),
             Container(
               margin: const EdgeInsets.all(16.0),
               padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(color: Colors.white24),
+              decoration: const BoxDecoration(color: Colors.white24),
               child: const Text(
                   "Over 8+ years of experience and web development and 5+ years of experience in mobile applications development "),
             ),
@@ -101,7 +113,8 @@ class HomePage extends StatelessWidget {
                 duration: "2019 - 2022"),
             _buildExperienceRow(
                 company: "Institut International de Technologie",
-                position: "Ingénierie en Informatique", duration: "2022 - 2025"),
+                position: "Ingénierie en Informatique",
+                duration: "2022 - 2025"),
             const SizedBox(height: 20.0),
             _buildTitle("Contact"),
             const SizedBox(height: 5.0),
@@ -115,7 +128,7 @@ class HomePage extends StatelessWidget {
                 SizedBox(width: 10.0),
                 Text(
                   "abdesslemsfaihi@gmail.com",
-                  style: TextStyle(fontSize: 16.0),
+                  style: TextStyle(fontSize: 17.0),
                 ),
               ],
             ),
@@ -130,7 +143,7 @@ class HomePage extends StatelessWidget {
                 SizedBox(width: 10.0),
                 Text(
                   "+216 29348710",
-                  style: TextStyle(fontSize: 16.0),
+                  style: TextStyle(fontSize: 17.0),
                 ),
               ],
             ),
@@ -163,10 +176,11 @@ class HomePage extends StatelessWidget {
         ),
         const SizedBox(width: 5.0),
         IconButton(
-          color: Colors.red,
-          icon: const Icon(FontAwesomeIcons.youtube),
+          color: Colors.indigo,
+          icon: const Icon(FontAwesomeIcons.linkedin),
           onPressed: () {
-            _launchURL("https://youtube.com/c/reactbits");
+            _launchURL(
+                "https://www.linkedin.com/in/abdesslem-sfaihi-740b71281/");
           },
         ),
         const SizedBox(width: 10.0),
@@ -195,7 +209,8 @@ class HomePage extends StatelessWidget {
       ),
       title: Text(
         company,
-        style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold),
       ),
       subtitle: Text("$position ($duration)"),
     );
@@ -216,6 +231,7 @@ class HomePage extends StatelessWidget {
           flex: 5,
           child: LinearProgressIndicator(
             value: level,
+            color: Colors.grey.shade700,
           ),
         ),
         const SizedBox(width: 16.0),
@@ -231,7 +247,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Text(
             title.toUpperCase(),
-            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           const Divider(
             color: Colors.black54,
@@ -241,42 +257,52 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Row _buildHeader() {
+
+
+  Row _buildHeader(BuildContext context) {
     return Row(
       children: <Widget>[
-        const SizedBox(width: 20.0),
+        const SizedBox(width: 30.0),
         SizedBox(
-            width: 80.0,
-            height: 80.0,
+            width: 130.0,
+            height: 130.0,
             child: CircleAvatar(
-                radius: 40,
+                radius: 50,
                 backgroundColor: Colors.grey,
                 child: CircleAvatar(
-                    radius: 35.0, backgroundImage: NetworkImage(avatars[7])))),
+                    radius: 60.0, backgroundImage: NetworkImage(avatars[7])))),
         const SizedBox(width: 20.0),
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               "Abdesslem Sfaihi",
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.0),
-            Text("Full Stack Developer"),
+            Text("Full Stack Developer", style: TextStyle(fontSize: 16.0),),
             SizedBox(height: 5.0),
-            Row(
-              children: <Widget>[
-                Icon(
-                  FontAwesomeIcons.map,
-                  size: 12.0,
-                  color: Colors.black54,
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  "Sfax, Tunisie",
-                  style: TextStyle(color: Colors.black54),
-                ),
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapPage()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    FontAwesomeIcons.mapLocationDot,
+                    size: 20.0,
+                    color: Colors.black54,
+                  ),
+                  SizedBox(width: 10.0),
+                  Text(
+                    "Sfax, Tunisie",
+                    style: TextStyle(color: Colors.black54, fontSize: 18.0,),
+                  ),
+                ],
+              ),
             ),
           ],
         )
